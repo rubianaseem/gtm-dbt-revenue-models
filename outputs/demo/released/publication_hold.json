@@ -1,0 +1,8 @@
+{
+  "because": "ISS-01,ISS-02,ISS-03,ISS-04,ISS-05",
+  "exposures": [
+    "campaign_attribution_report",
+    "weekly_pipeline_review"
+  ],
+  "plan_sha256": "aea49680d870700ead95dc703d510702d981b7c16717de9efe3c26a8ddc12fdc"
+}

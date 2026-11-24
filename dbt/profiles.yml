@@ -1,0 +1,11 @@
+# Local, credential-free profile. DuckDB file lives under warehouse/ (gitignored).
+# For Snowflake/BigQuery profiles see SETUP.md.
+gtm_revenue:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('GTM_DUCKDB_PATH', '../warehouse/gtm.duckdb') }}"
+      threads: 4
+      settings:
+        TimeZone: UTC

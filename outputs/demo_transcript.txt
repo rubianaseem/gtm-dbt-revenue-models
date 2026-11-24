@@ -1,0 +1,54 @@
+
+== 1. Clean run (synthetic HubSpot + Salesforce export)
+dbt build: {'success': 22, 'pass': 57, 'warn': 2, 'no-op': 2}   (exit 0; source freshness exit 0)
+  accepted known issue (not raised): relationships_stg_salesforce__opportunity_history_opportun (1 rows, owner revops, expires 2027-01-31)
+  accepted known issue (not raised): assert_open_pipeline_owner_active (9 rows, owner revops, expires 2026-12-31)
+  metric guard: ok   publication gate: clear
+  free-text values quarantined: 0   summaries: template
+  plan sha256 68bac8b4c389694a...  changes 0 (0 held)
+
+== 2. Monday morning incident (synthetic): five things broke over the weekend
+dbt build: {'success': 14, 'pass': 40, 'fail': 4, 'skipped': 24, 'warn': 1}   (exit 1; source freshness exit 1)
+  freshness error: hubspot.contacts last loaded 40.0h ago
+  accepted known issue (not raised): relationships_stg_salesforce__opportunity_history_opportun (1 rows, owner revops, expires 2027-01-31)
+  ISS-01 high   duplicate_keys         salesforce.opportunities         symptoms 1
+  ISS-02 high   missing_fx_rate        salesforce.opportunities         symptoms 1
+  ISS-03 high   null_values            salesforce.opportunities         symptoms 1
+  ISS-04 high   stale_source           hubspot.contacts                 symptoms 1
+  ISS-05 high   unmapped_stage         salesforce.opportunity_history   symptoms 1
+  metric guard: unavailable   publication gate: HOLD campaign_attribution_report, weekly_pipeline_review
+  free-text values quarantined: 4   summaries: template
+  plan sha256 aea49680d870700e...  changes 6 (3 held)
+
+== 3. Issue summaries (template mode; Claude only re-words these when a key is set)
+  ISS-01: Duplicate keys at salesforce.opportunities (error, severity high). Seen in: unique_stg_salesforce__opportunities_opportunity_id. 3 duplicate ids (2 identical, 1 conflicting). Blocks: campaign_attribution_report, weekly_pipeline_re
+  ISS-02: Missing fx rate at salesforce.opportunities (error, severity high). Seen in: mapped_in_seed_stg_salesforce__opportunities_currency__False__fx_rates__currency. Unmapped values: AUD. Blocks: campaign_attribution_report, weekly_pipel
+  ISS-03: Null values at salesforce.opportunities (error, severity high). Seen in: not_null_stg_salesforce__opportunities_owner_id. Blocks: campaign_attribution_report, weekly_pipeline_review.
+  ISS-04: Stale source at hubspot.contacts (error, severity high). Seen in: hubspot.contacts. Blocks: campaign_attribution_report.
+  ISS-05: Unmapped stage at salesforce.opportunity_history (error, severity high). Seen in: mapped_in_seed_stg_salesforce__opportunity_history_stage_raw__stage_map__raw_stage. Unmapped values: legal review. Blocks: weekly_pipeline_review.
+
+== 4. Proposed changes
+  CHG-01 duplicate_investigation HELD salesforce.opportunities
+  CHG-02 seed_row_add           HELD salesforce.opportunities  needs: rate_to_usd:AUD
+  CHG-03 crm_fix_task                salesforce.opportunities
+  CHG-04 connector_check             hubspot.contacts
+  CHG-05 seed_row_add           HELD salesforce.opportunity_history  needs: stage:legal review
+  CHG-06 publication_hold            campaign_attribution_report,weekly_pipel
+
+== 5. Approval
+  approve as claude-agent: REFUSED ('claude-agent' is an agent, model or service identity and can never approve)
+  approve held seed changes with no values: REFUSED (CHG-02 needs a human value for rate_to_usd:AUD (pass --value CHG-02.rate_to_usd:AUD=...))
+  approve as rubia, held ['CHG-02', 'CHG-05'], values {'CHG-02.rate_to_usd:AUD': '0.66', 'CHG-05.stage:legal review': 'Negotiation'} (demo values, synthetic): APPROVED
+
+== 6. Release (files only) and sandbox proof
+  released ['CHG-02', 'CHG-03', 'CHG-04', 'CHG-05', 'CHG-06']; withheld (held, not approved) ['CHG-01']
+  sandbox applied ['seed:fx_rates', 'seed:stage_map']
+  sandbox rebuild: {'success': 17, 'pass': 46, 'fail': 2, 'warn': 1, 'skipped': 17}; error nodes still failing: 2
+    still failing (needs the withheld or human fixes): not_null_stg_salesforce__opportunities_owner_id
+    still failing (needs the withheld or human fixes): unique_stg_salesforce__opportunities_opportunity_id
+  release again: wrote 0 (already released 5)
+
+== 7. Audit
+  audit.jsonl: (True, 'ok (12 records)')
+  approvals.jsonl: (True, 'ok (1 records)')
+  writes to CRM or the business warehouse: none (release writes files under the run folder only)

@@ -1,0 +1,14 @@
+raw_stage,stage,stage_order,is_closed,is_won
+discovery,Discovery,1,false,false
+qualified,Qualified,2,false,false
+qualification,Qualified,2,false,false
+demo,Demo,3,false,false
+demo scheduled,Demo,3,false,false
+proposal,Proposal,4,false,false
+proposal/price quote,Proposal,4,false,false
+negotiation,Negotiation,5,false,false
+negotiation/review,Negotiation,5,false,false
+closed won,Closed Won,6,true,true
+closed - won,Closed Won,6,true,true
+closed lost,Closed Lost,6,true,false
+closed - lost,Closed Lost,6,true,false

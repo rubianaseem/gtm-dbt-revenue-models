@@ -1,0 +1,18 @@
+version: 2
+sources:
+  - name: salesforce
+    description: Raw Salesforce export as a connector would land it. All columns arrive as text.
+    schema: raw_salesforce
+    loaded_at_field: _fivetran_synced
+    freshness:
+      warn_after: {count: 12, period: hour}
+      error_after: {count: 36, period: hour}
+    meta: {owner: revops, system: Salesforce}
+    tables:
+      - name: users
+      - name: opportunities
+        columns:
+          - name: id
+            data_tests: [not_null]
+      - name: opportunity_history
+      - name: tasks

@@ -1,0 +1,1494 @@
+{
+  "rows": [
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "stale_source",
+            "salesforce.opportunities"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 0,
+        "hold": false,
+        "pred": [
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "unknown",
+            "int_opportunities__enriched"
+          ]
+        ],
+        "predicted": 2
+      },
+      "expected": [
+        [
+          "stale_source",
+          "salesforce.opportunities"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "D01",
+      "split": "dev",
+      "status_counts": {
+        "no-op": 2,
+        "pass": 57,
+        "success": 22,
+        "warn": 2
+      },
+      "title": "Opportunities connector stopped syncing 50h ago"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": true,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "schema_drift",
+            "salesforce.opportunities"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "sandbox": {
+          "applied": [
+            "code:models/staging/salesforce/stg_salesforce__opportunities.sql",
+            "code:snapshots/snap_salesforce__opportunities.yml"
+          ],
+          "fixed": true,
+          "still_failing": []
+        },
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": false,
+        "found": 0,
+        "hold": true,
+        "pred": [
+          [
+            "model_error",
+            "salesforce.opportunities"
+          ]
+        ],
+        "predicted": 1
+      },
+      "expected": [
+        [
+          "schema_drift",
+          "salesforce.opportunities"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "D02",
+      "split": "dev",
+      "status_counts": {
+        "error": 1,
+        "pass": 36,
+        "skipped": 30,
+        "success": 16
+      },
+      "title": "Salesforce admin renamed Amount to amount__c"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": true,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "duplicate_keys",
+            "salesforce.opportunities"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": false,
+        "found": 1,
+        "hold": true,
+        "pred": [
+          [
+            "duplicate_keys",
+            "salesforce.opportunities"
+          ],
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ]
+        ],
+        "predicted": 2
+      },
+      "expected": [
+        [
+          "duplicate_keys",
+          "salesforce.opportunities"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "D03",
+      "split": "dev",
+      "status_counts": {
+        "fail": 1,
+        "pass": 47,
+        "skipped": 17,
+        "success": 17,
+        "warn": 1
+      },
+      "title": "Connector re-sync landed identical opportunity rows twice"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": true,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "unmapped_stage",
+            "salesforce.opportunity_history"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "sandbox": {
+          "applied": [
+            "seed:stage_map"
+          ],
+          "fixed": true,
+          "still_failing": []
+        },
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": false,
+        "found": 0,
+        "hold": true,
+        "pred": [
+          [
+            "unknown",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "unknown",
+            "int_opportunities__enriched"
+          ]
+        ],
+        "predicted": 3
+      },
+      "expected": [
+        [
+          "unmapped_stage",
+          "salesforce.opportunity_history"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "D04",
+      "split": "dev",
+      "status_counts": {
+        "fail": 1,
+        "no-op": 1,
+        "pass": 52,
+        "skipped": 8,
+        "success": 19,
+        "warn": 2
+      },
+      "title": "Sales added a 'Legal Review' stage"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": true,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "missing_fx_rate",
+            "salesforce.opportunities"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "sandbox": {
+          "applied": [
+            "seed:fx_rates"
+          ],
+          "fixed": true,
+          "still_failing": []
+        },
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": false,
+        "found": 0,
+        "hold": true,
+        "pred": [
+          [
+            "unknown",
+            "salesforce.opportunities"
+          ],
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ]
+        ],
+        "predicted": 2
+      },
+      "expected": [
+        [
+          "missing_fx_rate",
+          "salesforce.opportunities"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "D05",
+      "split": "dev",
+      "status_counts": {
+        "fail": 1,
+        "pass": 47,
+        "skipped": 17,
+        "success": 17,
+        "warn": 1
+      },
+      "title": "First Australian deals arrive in AUD"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "null_values",
+            "salesforce.opportunities"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": true,
+        "pred": [
+          [
+            "null_values",
+            "salesforce.opportunities"
+          ],
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ]
+        ],
+        "predicted": 2
+      },
+      "expected": [
+        [
+          "null_values",
+          "salesforce.opportunities"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "D06",
+      "split": "dev",
+      "status_counts": {
+        "fail": 1,
+        "pass": 47,
+        "skipped": 17,
+        "success": 17,
+        "warn": 1
+      },
+      "title": "Owner removed from some opportunities"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "timestamp_format_drift",
+            "salesforce.opportunity_history"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 0,
+        "hold": true,
+        "pred": [
+          [
+            "null_values",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "unknown",
+            "int_opportunities__enriched"
+          ]
+        ],
+        "predicted": 3
+      },
+      "expected": [
+        [
+          "timestamp_format_drift",
+          "salesforce.opportunity_history"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "D07",
+      "split": "dev",
+      "status_counts": {
+        "fail": 1,
+        "no-op": 1,
+        "pass": 52,
+        "skipped": 8,
+        "success": 19,
+        "warn": 2
+      },
+      "title": "History export switched to DD/MM/YYYY"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "timezone_or_date_drift",
+            "hubspot.touches"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 0,
+        "hold": true,
+        "pred": [
+          [
+            "unknown",
+            "hubspot.touches"
+          ],
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "unknown",
+            "int_opportunities__enriched"
+          ]
+        ],
+        "predicted": 3
+      },
+      "expected": [
+        [
+          "timezone_or_date_drift",
+          "hubspot.touches"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "D08",
+      "split": "dev",
+      "status_counts": {
+        "fail": 1,
+        "no-op": 1,
+        "pass": 53,
+        "skipped": 6,
+        "success": 20,
+        "warn": 2
+      },
+      "title": "Touch timestamps pushed into the future by a timezone bug"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "metric_shift",
+            "salesforce.opportunities"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 0,
+        "hold": false,
+        "pred": [
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "unknown",
+            "int_opportunities__enriched"
+          ]
+        ],
+        "predicted": 2
+      },
+      "expected": [
+        [
+          "metric_shift",
+          "salesforce.opportunities"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "D09",
+      "split": "dev",
+      "status_counts": {
+        "no-op": 2,
+        "pass": 57,
+        "success": 22,
+        "warn": 2
+      },
+      "title": "A batch of amounts entered in cents (no test fails)"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "orphan_reference",
+            "hubspot.touches"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": true,
+        "pred": [
+          [
+            "orphan_reference",
+            "hubspot.touches"
+          ],
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "unknown",
+            "int_opportunities__enriched"
+          ]
+        ],
+        "predicted": 3
+      },
+      "expected": [
+        [
+          "orphan_reference",
+          "hubspot.touches"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "D10",
+      "split": "dev",
+      "status_counts": {
+        "fail": 1,
+        "no-op": 1,
+        "pass": 53,
+        "skipped": 6,
+        "success": 20,
+        "warn": 2
+      },
+      "title": "Touches reference a campaign that does not exist"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "contract_breach",
+            "fct_pipeline_snapshot"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 0,
+        "hold": true,
+        "pred": [
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "unknown",
+            "int_opportunities__enriched"
+          ],
+          [
+            "model_error",
+            "fct_pipeline_snapshot"
+          ]
+        ],
+        "predicted": 3
+      },
+      "expected": [
+        [
+          "contract_breach",
+          "fct_pipeline_snapshot"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "D11",
+      "split": "dev",
+      "status_counts": {
+        "error": 1,
+        "no-op": 1,
+        "pass": 56,
+        "skipped": 2,
+        "success": 21,
+        "warn": 2
+      },
+      "title": "A pull request changes the pipeline mart's column type"
+    },
+    {
+      "agent": {
+        "correct_predictions": 2,
+        "expected": 2,
+        "fix_detail_ok": true,
+        "found": 2,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "duplicate_keys",
+            "salesforce.opportunities"
+          ],
+          [
+            "stale_source",
+            "hubspot.contacts"
+          ]
+        ],
+        "predicted": 2,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 1,
+        "expected": 2,
+        "fix_detail_ok": false,
+        "found": 1,
+        "hold": true,
+        "pred": [
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "duplicate_keys",
+            "salesforce.opportunities"
+          ]
+        ],
+        "predicted": 2
+      },
+      "expected": [
+        [
+          "stale_source",
+          "hubspot.contacts"
+        ],
+        [
+          "duplicate_keys",
+          "salesforce.opportunities"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "D12",
+      "split": "dev",
+      "status_counts": {
+        "fail": 1,
+        "pass": 47,
+        "skipped": 17,
+        "success": 17,
+        "warn": 1
+      },
+      "title": "Contacts sync stale and conflicting duplicate opportunity ids"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "invalid_amount",
+            "salesforce.opportunities"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 0,
+        "hold": true,
+        "pred": [
+          [
+            "unknown",
+            "salesforce.opportunities"
+          ],
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ]
+        ],
+        "predicted": 2
+      },
+      "expected": [
+        [
+          "invalid_amount",
+          "salesforce.opportunities"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "D13",
+      "split": "dev",
+      "status_counts": {
+        "fail": 1,
+        "pass": 47,
+        "skipped": 17,
+        "success": 17,
+        "warn": 1
+      },
+      "title": "Negative amounts from a credit-note import"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "null_values",
+            "salesforce.opportunities"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 5,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": true,
+        "pred": [
+          [
+            "null_values",
+            "salesforce.opportunities"
+          ],
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ]
+        ],
+        "predicted": 2
+      },
+      "expected": [
+        [
+          "null_values",
+          "salesforce.opportunities"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "D14",
+      "split": "dev",
+      "status_counts": {
+        "fail": 1,
+        "pass": 47,
+        "skipped": 17,
+        "success": 17,
+        "warn": 1
+      },
+      "title": "Ownerless deals whose descriptions carry prompt injection"
+    },
+    {
+      "agent": {
+        "correct_predictions": 0,
+        "expected": 0,
+        "fix_detail_ok": null,
+        "found": 0,
+        "hold": false,
+        "injection_leaks": 0,
+        "pred": [],
+        "predicted": 0,
+        "prompts_sent": 0,
+        "quarantined": 0,
+        "summary_mode": "template"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 0,
+        "fix_detail_ok": null,
+        "found": 0,
+        "hold": false,
+        "pred": [
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "unknown",
+            "int_opportunities__enriched"
+          ]
+        ],
+        "predicted": 2
+      },
+      "expected": [],
+      "expected_hold": false,
+      "id": "D15",
+      "split": "dev",
+      "status_counts": {
+        "no-op": 2,
+        "pass": 57,
+        "success": 22,
+        "warn": 2
+      },
+      "title": "Clean run"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": false,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "stale_source",
+            "salesforce.tasks"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 0,
+        "hold": false,
+        "pred": [
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "unknown",
+            "int_opportunities__enriched"
+          ]
+        ],
+        "predicted": 2
+      },
+      "expected": [
+        [
+          "stale_source",
+          "salesforce.tasks"
+        ]
+      ],
+      "expected_hold": false,
+      "id": "H01",
+      "split": "heldout",
+      "status_counts": {
+        "no-op": 2,
+        "pass": 57,
+        "success": 22,
+        "warn": 2
+      },
+      "title": "Tasks connector stale (no exposure depends on it)"
+    },
+    {
+      "agent": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": false,
+        "found": 0,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "unknown",
+            "hubspot.contacts"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "sandbox": {
+          "applied": [],
+          "fixed": false,
+          "still_failing": [
+            "model.gtm_revenue.stg_hubspot__contacts"
+          ]
+        },
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": false,
+        "found": 0,
+        "hold": true,
+        "pred": [
+          [
+            "model_error",
+            "hubspot.contacts"
+          ],
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "unknown",
+            "int_opportunities__enriched"
+          ]
+        ],
+        "predicted": 3
+      },
+      "expected": [
+        [
+          "schema_drift",
+          "hubspot.contacts"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "H02",
+      "split": "heldout",
+      "status_counts": {
+        "error": 1,
+        "no-op": 1,
+        "pass": 47,
+        "skipped": 15,
+        "success": 17,
+        "warn": 2
+      },
+      "title": "HubSpot email property renamed to email_address"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": true,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "duplicate_keys",
+            "salesforce.opportunity_history"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": false,
+        "found": 1,
+        "hold": true,
+        "pred": [
+          [
+            "duplicate_keys",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "unknown",
+            "int_opportunities__enriched"
+          ]
+        ],
+        "predicted": 3
+      },
+      "expected": [
+        [
+          "duplicate_keys",
+          "salesforce.opportunity_history"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "H03",
+      "split": "heldout",
+      "status_counts": {
+        "fail": 1,
+        "no-op": 1,
+        "pass": 52,
+        "skipped": 8,
+        "success": 19,
+        "warn": 2
+      },
+      "title": "Identical stage-history rows duplicated by a re-sync"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": true,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "unmapped_stage",
+            "salesforce.opportunities"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "sandbox": {
+          "applied": [
+            "seed:stage_map"
+          ],
+          "fixed": true,
+          "still_failing": []
+        },
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": false,
+        "found": 0,
+        "hold": true,
+        "pred": [
+          [
+            "unknown",
+            "salesforce.opportunities"
+          ],
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ]
+        ],
+        "predicted": 2
+      },
+      "expected": [
+        [
+          "unmapped_stage",
+          "salesforce.opportunities"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "H04",
+      "split": "heldout",
+      "status_counts": {
+        "fail": 1,
+        "pass": 47,
+        "skipped": 17,
+        "success": 17,
+        "warn": 1
+      },
+      "title": "Current stage 'Verbal Commit' appears on opportunities"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": true,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "missing_fx_rate",
+            "salesforce.opportunities"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": false,
+        "found": 0,
+        "hold": true,
+        "pred": [
+          [
+            "unknown",
+            "salesforce.opportunities"
+          ],
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ]
+        ],
+        "predicted": 2
+      },
+      "expected": [
+        [
+          "missing_fx_rate",
+          "salesforce.opportunities"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "H05",
+      "split": "heldout",
+      "status_counts": {
+        "fail": 1,
+        "pass": 47,
+        "skipped": 17,
+        "success": 17,
+        "warn": 1
+      },
+      "title": "Currency typo GPB"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "timezone_or_date_drift",
+            "salesforce.opportunity_history"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 0,
+        "hold": true,
+        "pred": [
+          [
+            "unknown",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "unknown",
+            "int_opportunities__enriched"
+          ]
+        ],
+        "predicted": 3
+      },
+      "expected": [
+        [
+          "timezone_or_date_drift",
+          "salesforce.opportunity_history"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "H06",
+      "split": "heldout",
+      "status_counts": {
+        "fail": 1,
+        "no-op": 2,
+        "pass": 56,
+        "success": 22,
+        "warn": 2
+      },
+      "title": "History timestamps shifted 30 days earlier by an offset bug"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "metric_shift",
+            "salesforce.opportunities"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 0,
+        "hold": false,
+        "pred": [
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "unknown",
+            "int_opportunities__enriched"
+          ]
+        ],
+        "predicted": 2
+      },
+      "expected": [
+        [
+          "metric_shift",
+          "salesforce.opportunities"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "H07",
+      "split": "heldout",
+      "status_counts": {
+        "no-op": 2,
+        "pass": 57,
+        "success": 22,
+        "warn": 2
+      },
+      "title": "Amounts in pence on a block of deals (no test fails)"
+    },
+    {
+      "agent": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 0,
+        "hold": false,
+        "injection_leaks": 0,
+        "pred": [],
+        "predicted": 0,
+        "prompts_sent": 0,
+        "quarantined": 0,
+        "summary_mode": "template"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 0,
+        "hold": false,
+        "pred": [
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "unknown",
+            "int_opportunities__enriched"
+          ]
+        ],
+        "predicted": 2
+      },
+      "expected": [
+        [
+          "orphan_reference",
+          "hubspot.touches"
+        ]
+      ],
+      "expected_hold": false,
+      "id": "H08",
+      "split": "heldout",
+      "status_counts": {
+        "no-op": 2,
+        "pass": 57,
+        "success": 22,
+        "warn": 2
+      },
+      "title": "Touches with blank contact ids (warn-level test)"
+    },
+    {
+      "agent": {
+        "correct_predictions": 1,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 1,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "contract_breach",
+            "rpt_owner_coverage"
+          ]
+        ],
+        "predicted": 1,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 1,
+        "fix_detail_ok": null,
+        "found": 0,
+        "hold": true,
+        "pred": [
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ],
+          [
+            "unknown",
+            "int_opportunities__enriched"
+          ],
+          [
+            "model_error",
+            "rpt_owner_coverage"
+          ]
+        ],
+        "predicted": 3
+      },
+      "expected": [
+        [
+          "contract_breach",
+          "rpt_owner_coverage"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "H09",
+      "split": "heldout",
+      "status_counts": {
+        "error": 1,
+        "no-op": 1,
+        "pass": 56,
+        "skipped": 2,
+        "success": 21,
+        "warn": 2
+      },
+      "title": "A pull request renames a contracted column"
+    },
+    {
+      "agent": {
+        "correct_predictions": 2,
+        "expected": 2,
+        "fix_detail_ok": null,
+        "found": 2,
+        "hold": true,
+        "injection_leaks": 0,
+        "pred": [
+          [
+            "missing_fx_rate",
+            "salesforce.opportunities"
+          ],
+          [
+            "stale_source",
+            "salesforce.opportunities"
+          ]
+        ],
+        "predicted": 2,
+        "prompts_sent": 1,
+        "quarantined": 0,
+        "summary_mode": "template_fallback"
+      },
+      "baseline": {
+        "correct_predictions": 0,
+        "expected": 2,
+        "fix_detail_ok": null,
+        "found": 0,
+        "hold": true,
+        "pred": [
+          [
+            "unknown",
+            "salesforce.opportunities"
+          ],
+          [
+            "orphan_reference",
+            "salesforce.opportunity_history"
+          ]
+        ],
+        "predicted": 2
+      },
+      "expected": [
+        [
+          "stale_source",
+          "salesforce.opportunities"
+        ],
+        [
+          "missing_fx_rate",
+          "salesforce.opportunities"
+        ]
+      ],
+      "expected_hold": true,
+      "id": "H10",
+      "split": "heldout",
+      "status_counts": {
+        "fail": 1,
+        "pass": 47,
+        "skipped": 17,
+        "success": 17,
+        "warn": 1
+      },
+      "title": "Opportunities stale and AUD deals at once"
+    }
+  ],
+  "scenario_hashes_ok": true,
+  "summary": {
+    "dev": {
+      "agent": {
+        "fix_detail_ok": "5/5",
+        "hold_correct": "15/15",
+        "injection_leaks": 0,
+        "issues_found": "15/15",
+        "model_outputs_rejected": 14,
+        "precision": "15/15",
+        "sandbox_fix_verified": "3/3",
+        "scenarios": 15,
+        "silent_issues_found": "3/3"
+      },
+      "baseline": {
+        "fix_detail_ok": "0/5",
+        "hold_correct": "13/15",
+        "issues_found": "5/15",
+        "precision": "5/34",
+        "scenarios": 15,
+        "silent_issues_found": "0/3"
+      }
+    },
+    "heldout": {
+      "agent": {
+        "fix_detail_ok": "3/4",
+        "hold_correct": "10/10",
+        "injection_leaks": 0,
+        "issues_found": "9/11",
+        "model_outputs_rejected": 9,
+        "precision": "9/10",
+        "sandbox_fix_verified": "1/2",
+        "scenarios": 10,
+        "silent_issues_found": "3/3"
+      },
+      "baseline": {
+        "fix_detail_ok": "0/4",
+        "hold_correct": "9/10",
+        "issues_found": "1/11",
+        "precision": "1/24",
+        "scenarios": 10,
+        "silent_issues_found": "0/3"
+      }
+    }
+  }
+}

@@ -1,0 +1,76 @@
+version: 2
+models:
+  - name: fct_pipeline_snapshot
+    description: Open pipeline by owner, fiscal quarter and stage as of var('as_of_date'). Contracted.
+    config: {contract: {enforced: true}, meta: {owner: revops}}
+    columns:
+      - {name: as_of_date, data_type: date, constraints: [{type: not_null}]}
+      - {name: owner_id, data_type: varchar}
+      - {name: fiscal_quarter, data_type: varchar}
+      - {name: stage, data_type: varchar}
+      - {name: open_opportunities, data_type: integer}
+      - {name: pipeline_usd, data_type: double}
+      - {name: missing_amount_count, data_type: integer}
+  - name: fct_funnel_conversion
+    config: {contract: {enforced: true}, meta: {owner: revops}}
+    columns:
+      - {name: stage, data_type: varchar, data_tests: [unique]}
+      - {name: stage_order, data_type: integer}
+      - {name: reached, data_type: integer}
+      - {name: progressed, data_type: integer}
+      - {name: conversion_to_next_pct, data_type: double}
+  - name: fct_stage_velocity
+    config: {contract: {enforced: true}, meta: {owner: revops}}
+    columns:
+      - {name: stage, data_type: varchar, data_tests: [unique]}
+      - {name: stage_order, data_type: integer}
+      - {name: completed_spells, data_type: integer}
+      - {name: median_days, data_type: double}
+      - {name: p75_days, data_type: double}
+  - name: fct_lead_to_opportunity_attribution
+    config: {contract: {enforced: true}, meta: {owner: marketing-ops}}
+    columns:
+      - {name: opportunity_id, data_type: varchar, data_tests: [unique, not_null]}
+      - {name: fiscal_quarter, data_type: varchar}
+      - {name: amount_usd, data_type: double}
+      - {name: first_touch_campaign_id, data_type: varchar}
+      - {name: last_touch_campaign_id, data_type: varchar}
+      - {name: touches_before_create, data_type: integer}
+      - {name: days_first_touch_to_opp, data_type: integer}
+      - name: attribution_status
+        data_type: varchar
+        data_tests:
+          - accepted_values:
+              arguments: {values: [campaign, unattributed]}
+  - name: rpt_owner_coverage
+    config: {contract: {enforced: true}, meta: {owner: revops}}
+    columns:
+      - {name: owner_id, data_type: varchar, constraints: [{type: not_null}]}
+      - {name: owner_name, data_type: varchar}
+      - {name: fiscal_quarter, data_type: varchar}
+      - {name: quota_usd, data_type: double}
+      - {name: open_pipeline_usd, data_type: double}
+      - {name: closed_won_usd, data_type: double}
+      - {name: coverage_ratio, data_type: double}
+      - {name: owner_is_active, data_type: boolean}
+      - name: coverage_flag
+        data_type: varchar
+        data_tests:
+          - accepted_values:
+              arguments: {values: [inactive_owner_holds_pipeline, below_3x, ok]}
+exposures:
+  - name: weekly_pipeline_review
+    type: dashboard
+    maturity: medium
+    description: The Monday pipeline and coverage review that leadership reads. Any failure upstream of these models blocks it.
+    owner: {name: RevOps (synthetic), email: revops@seller.example}
+    depends_on:
+      - ref('fct_pipeline_snapshot')
+      - ref('rpt_owner_coverage')
+      - ref('fct_funnel_conversion')
+  - name: campaign_attribution_report
+    type: analysis
+    maturity: low
+    owner: {name: Marketing Ops (synthetic), email: mops@seller.example}
+    depends_on:
+      - ref('fct_lead_to_opportunity_attribution')

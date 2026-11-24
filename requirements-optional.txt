@@ -1,0 +1,2 @@
+# Only for the optional Claude summaries. The core runs without it.
+anthropic>=0.40

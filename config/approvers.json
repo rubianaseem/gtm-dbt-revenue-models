@@ -1,0 +1,10 @@
+{
+  "_note": "Named humans who may approve a dbt change plan. Agent, model and service identities are always refused. There is no auto-approve flag.",
+  "approvers": {
+    "rubia": {"name": "Rubia Naseem", "may_approve_held": true},
+    "analytics-lead": {"name": "Analytics engineering lead (example)", "may_approve_held": true},
+    "revops-analyst": {"name": "RevOps analyst (example)", "may_approve_held": false}
+  },
+  "blocked_identities": ["agent", "gtm-dbt", "claude", "model", "llm", "bot", "service", "system", "automation", "integration", "api", "workflow", "ci", "dbt"],
+  "approval_ttl_hours": 24
+}

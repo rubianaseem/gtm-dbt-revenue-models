@@ -1,0 +1,4 @@
+currency,rate_to_usd,rate_note
+USD,1.0,identity
+GBP,1.27,synthetic FY27 plan rate for the demo; replace with your finance team's rate table
+EUR,1.08,synthetic FY27 plan rate for the demo; replace with your finance team's rate table

@@ -1,0 +1,8 @@
+[
+  {"node_prefix": "test.gtm_revenue.relationships_stg_salesforce__opportunity_history_opportunity_id", "max_failures": 1,
+   "reason": "Stage history rows for soft-deleted opportunity 006O0077 (synthetic). Accepted until the history sync filters deleted parents.",
+   "owner": "revops", "expires": "2027-01-31"},
+  {"node_prefix": "test.gtm_revenue.assert_open_pipeline_owner_active", "max_failures": 9,
+   "reason": "Open deals still owned by inactive rep 005U004 (synthetic) while territory is reassigned.",
+   "owner": "revops", "expires": "2026-12-31"}
+]

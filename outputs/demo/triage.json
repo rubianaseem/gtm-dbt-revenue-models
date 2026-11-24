@@ -1,0 +1,503 @@
+{
+  "acknowledged": [
+    {
+      "expires": "2027-01-31",
+      "failures": 1,
+      "node": "relationships_stg_salesforce__opportunity_history_opportunity_id__opportunity_id__ref_stg_salesforce__opportunities_",
+      "owner": "revops",
+      "reason": "Stage history rows for soft-deleted opportunity 006O0077 (synthetic). Accepted until the history sync filters deleted parents."
+    }
+  ],
+  "dbt": {
+    "build_exit": 1,
+    "dbt_bin": "dbt",
+    "error": null,
+    "freshness_exit": 1,
+    "ok": true
+  },
+  "freshness": [
+    {
+      "age_hours": 1.0,
+      "criteria": {
+        "error_after": {
+          "count": 168,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 72,
+          "period": "hour"
+        }
+      },
+      "max_loaded_at": "2026-11-24T17:09:00.623293+00:00",
+      "node_id": "source.gtm_revenue.hubspot.campaigns",
+      "status": "pass"
+    },
+    {
+      "age_hours": 40.0,
+      "criteria": {
+        "error_after": {
+          "count": 36,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 12,
+          "period": "hour"
+        }
+      },
+      "max_loaded_at": "2026-11-23T02:09:00.623293+00:00",
+      "node_id": "source.gtm_revenue.hubspot.contacts",
+      "status": "error"
+    },
+    {
+      "age_hours": 1.0,
+      "criteria": {
+        "error_after": {
+          "count": 36,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 12,
+          "period": "hour"
+        }
+      },
+      "max_loaded_at": "2026-11-24T17:09:00.623293+00:00",
+      "node_id": "source.gtm_revenue.hubspot.companies",
+      "status": "pass"
+    },
+    {
+      "age_hours": 1.0,
+      "criteria": {
+        "error_after": {
+          "count": 36,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 12,
+          "period": "hour"
+        }
+      },
+      "max_loaded_at": "2026-11-24T17:09:00.623293+00:00",
+      "node_id": "source.gtm_revenue.hubspot.touches",
+      "status": "pass"
+    },
+    {
+      "age_hours": 1.0,
+      "criteria": {
+        "error_after": {
+          "count": 36,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 12,
+          "period": "hour"
+        }
+      },
+      "max_loaded_at": "2026-11-24T17:09:00.623293+00:00",
+      "node_id": "source.gtm_revenue.salesforce.opportunities",
+      "status": "pass"
+    },
+    {
+      "age_hours": 1.0,
+      "criteria": {
+        "error_after": {
+          "count": 36,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 12,
+          "period": "hour"
+        }
+      },
+      "max_loaded_at": "2026-11-24T17:09:00.623293+00:00",
+      "node_id": "source.gtm_revenue.salesforce.opportunity_history",
+      "status": "pass"
+    },
+    {
+      "age_hours": 1.0,
+      "criteria": {
+        "error_after": {
+          "count": 36,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 12,
+          "period": "hour"
+        }
+      },
+      "max_loaded_at": "2026-11-24T17:09:00.623293+00:00",
+      "node_id": "source.gtm_revenue.salesforce.tasks",
+      "status": "pass"
+    },
+    {
+      "age_hours": 1.0,
+      "criteria": {
+        "error_after": {
+          "count": 36,
+          "period": "hour"
+        },
+        "filter": null,
+        "warn_after": {
+          "count": 12,
+          "period": "hour"
+        }
+      },
+      "max_loaded_at": "2026-11-24T17:09:00.623293+00:00",
+      "node_id": "source.gtm_revenue.salesforce.users",
+      "status": "pass"
+    }
+  ],
+  "issues": [
+    {
+      "blast_radius": {
+        "exposures": [
+          "campaign_attribution_report",
+          "weekly_pipeline_review"
+        ],
+        "models": [
+          "fct_lead_to_opportunity_attribution",
+          "fct_pipeline_snapshot",
+          "int_opportunities__enriched",
+          "int_touches__attributed",
+          "rpt_owner_coverage",
+          "stg_salesforce__opportunities"
+        ]
+      },
+      "category": "duplicate_keys",
+      "extra": {
+        "duplicate_profile": {
+          "conflicting": 1,
+          "duplicate_ids": 3,
+          "identical": 2,
+          "sample_ids": [
+            "006O0000",
+            "006O0015",
+            "006O0030"
+          ]
+        }
+      },
+      "fix_type": "duplicate_investigation",
+      "folded": [],
+      "issue_id": "ISS-01",
+      "root": "source.gtm_revenue.salesforce.opportunities",
+      "root_name": "salesforce.opportunities",
+      "severity": "high",
+      "status": "error",
+      "symptoms": [
+        {
+          "column": "opportunity_id",
+          "evidence": [
+            {
+              "n_records": 2,
+              "unique_field": "006O0015"
+            },
+            {
+              "n_records": 2,
+              "unique_field": "006O0030"
+            },
+            {
+              "n_records": 2,
+              "unique_field": "006O0000"
+            }
+          ],
+          "failures": 3,
+          "model": "stg_salesforce__opportunities",
+          "node": "unique_stg_salesforce__opportunities_opportunity_id",
+          "node_id": "test.gtm_revenue.unique_stg_salesforce__opportunities_opportunity_id.5667a26827",
+          "status": "error",
+          "test": "unique"
+        }
+      ]
+    },
+    {
+      "blast_radius": {
+        "exposures": [
+          "campaign_attribution_report",
+          "weekly_pipeline_review"
+        ],
+        "models": [
+          "fct_lead_to_opportunity_attribution",
+          "fct_pipeline_snapshot",
+          "int_opportunities__enriched",
+          "int_touches__attributed",
+          "rpt_owner_coverage",
+          "stg_salesforce__opportunities"
+        ]
+      },
+      "category": "missing_fx_rate",
+      "extra": {
+        "unmapped_values": [
+          "AUD"
+        ]
+      },
+      "fix_type": "seed_row_add",
+      "folded": [],
+      "issue_id": "ISS-02",
+      "root": "source.gtm_revenue.salesforce.opportunities",
+      "root_name": "salesforce.opportunities",
+      "severity": "high",
+      "status": "error",
+      "symptoms": [
+        {
+          "column": "currency",
+          "evidence": [
+            {
+              "row_count": 6,
+              "unmapped_value": "AUD"
+            }
+          ],
+          "failures": 1,
+          "model": "stg_salesforce__opportunities",
+          "node": "mapped_in_seed_stg_salesforce__opportunities_currency__False__fx_rates__currency",
+          "node_id": "test.gtm_revenue.mapped_in_seed_stg_salesforce__opportunities_currency__False__fx_rates__currency.95db7496a3",
+          "status": "error",
+          "test": "mapped_in_seed"
+        }
+      ]
+    },
+    {
+      "blast_radius": {
+        "exposures": [
+          "campaign_attribution_report",
+          "weekly_pipeline_review"
+        ],
+        "models": [
+          "fct_lead_to_opportunity_attribution",
+          "fct_pipeline_snapshot",
+          "int_opportunities__enriched",
+          "int_touches__attributed",
+          "rpt_owner_coverage",
+          "stg_salesforce__opportunities"
+        ]
+      },
+      "category": "null_values",
+      "extra": {},
+      "fix_type": "crm_fix_task",
+      "folded": [],
+      "issue_id": "ISS-03",
+      "root": "source.gtm_revenue.salesforce.opportunities",
+      "root_name": "salesforce.opportunities",
+      "severity": "high",
+      "status": "error",
+      "symptoms": [
+        {
+          "column": "owner_id",
+          "evidence": [
+            {
+              "account_domain": "kestrelfoods.example",
+              "amount_local": 95000.0,
+              "close_date": "2027-02-10",
+              "created_at": "2026-04-12 14:00:00",
+              "currency": "EUR",
+              "lead_source": "Outbound",
+              "opportunity_id": "006O0007",
+              "opportunity_name": "Kestrelfoods - New Business (synthetic)",
+              "owner_id": null,
+              "primary_contact_email": "dev.rossi4@kestrelfoods.example",
+              "stage_raw": "Qualified",
+              "synced_at": "2026-11-24 17:09:00.623293"
+            },
+            {
+              "account_domain": "alderlabs.example",
+              "amount_local": 56000.0,
+              "close_date": "2026-04-05",
+              "created_at": "2026-03-09 10:00:00",
+              "currency": "USD",
+              "lead_source": "Inbound",
+              "opportunity_id": "006O0057",
+              "opportunity_name": "Alderlabs - New Business (synthetic)",
+              "owner_id": null,
+              "primary_contact_email": "ella.novak50@alderlabs.example",
+              "stage_raw": "Closed - Lost",
+              "synced_at": "2026-11-24 17:09:00.623293"
+            },
+            {
+              "account_domain": "kestrelfoods.example",
+              "amount_local": 67000.0,
+              "close_date": "2027-02-08",
+              "created_at": "2026-07-27 19:00:00",
+              "currency": "GBP",
+              "lead_source": "Event",
+              "opportunity_id": "006O0107",
+              "opportunity_name": "Kestrelfoods - New Business (synthetic)",
+              "owner_id": null,
+              "primary_contact_email": "dev.rossi4@kestrelfoods.example",
+              "stage_raw": "discovery",
+              "synced_at": "2026-11-24 17:09:00.623293"
+            }
+          ],
+          "failures": 4,
+          "model": "stg_salesforce__opportunities",
+          "node": "not_null_stg_salesforce__opportunities_owner_id",
+          "node_id": "test.gtm_revenue.not_null_stg_salesforce__opportunities_owner_id.999bd2c60f",
+          "status": "error",
+          "test": "not_null"
+        }
+      ]
+    },
+    {
+      "blast_radius": {
+        "exposures": [
+          "campaign_attribution_report"
+        ],
+        "models": [
+          "fct_lead_to_opportunity_attribution",
+          "int_contact_id_map",
+          "int_contacts__deduped",
+          "int_touches__attributed",
+          "stg_hubspot__contacts"
+        ]
+      },
+      "category": "stale_source",
+      "extra": {
+        "age": "max loaded 40.0h ago"
+      },
+      "fix_type": "connector_check",
+      "folded": [],
+      "issue_id": "ISS-04",
+      "root": "source.gtm_revenue.hubspot.contacts",
+      "root_name": "hubspot.contacts",
+      "severity": "high",
+      "status": "error",
+      "symptoms": [
+        {
+          "column": null,
+          "evidence": [],
+          "failures": null,
+          "model": "hubspot.contacts",
+          "node": "hubspot.contacts",
+          "node_id": "source.gtm_revenue.hubspot.contacts",
+          "status": "error",
+          "test": "freshness"
+        }
+      ]
+    },
+    {
+      "blast_radius": {
+        "exposures": [
+          "weekly_pipeline_review"
+        ],
+        "models": [
+          "fct_funnel_conversion",
+          "fct_stage_velocity",
+          "int_opportunity__stage_spells",
+          "stg_salesforce__opportunity_history"
+        ]
+      },
+      "category": "unmapped_stage",
+      "extra": {
+        "proposed_mappings": {
+          "legal review": null
+        },
+        "unmapped_values": [
+          "legal review"
+        ]
+      },
+      "fix_type": "seed_row_add",
+      "folded": [],
+      "issue_id": "ISS-05",
+      "root": "source.gtm_revenue.salesforce.opportunity_history",
+      "root_name": "salesforce.opportunity_history",
+      "severity": "high",
+      "status": "error",
+      "symptoms": [
+        {
+          "column": "stage_raw",
+          "evidence": [
+            {
+              "row_count": 12,
+              "unmapped_value": "legal review"
+            }
+          ],
+          "failures": 1,
+          "model": "stg_salesforce__opportunity_history",
+          "node": "mapped_in_seed_stg_salesforce__opportunity_history_stage_raw__stage_map__raw_stage",
+          "node_id": "test.gtm_revenue.mapped_in_seed_stg_salesforce__opportunity_history_stage_raw__stage_map__raw_stage.c972cc1d83",
+          "status": "error",
+          "test": "mapped_in_seed"
+        }
+      ]
+    }
+  ],
+  "metric_guard": {
+    "drivers": [],
+    "metrics": null,
+    "shifts": [],
+    "status": "unavailable"
+  },
+  "plan_sha256": "aea49680d870700ead95dc703d510702d981b7c16717de9efe3c26a8ddc12fdc",
+  "publication_gate": {
+    "because": [
+      "ISS-01",
+      "ISS-02",
+      "ISS-03",
+      "ISS-04",
+      "ISS-05"
+    ],
+    "exposures": [
+      "campaign_attribution_report",
+      "weekly_pipeline_review"
+    ],
+    "hold": true
+  },
+  "quarantined": [
+    {
+      "column": "description_untrusted",
+      "patterns": [
+        "P0",
+        "P2",
+        "P8"
+      ],
+      "record": "006O0007"
+    },
+    {
+      "column": "description_untrusted",
+      "patterns": [
+        "P0",
+        "P2",
+        "P8"
+      ],
+      "record": "006O0057"
+    },
+    {
+      "column": "description_untrusted",
+      "patterns": [
+        "P0",
+        "P2",
+        "P8"
+      ],
+      "record": "006O0107"
+    },
+    {
+      "column": "description_untrusted",
+      "patterns": [
+        "P0",
+        "P2",
+        "P8"
+      ],
+      "record": "006O0015"
+    }
+  ],
+  "run_id": "run-f8bfab7480d4",
+  "status_counts": {
+    "fail": 4,
+    "pass": 40,
+    "skipped": 24,
+    "success": 14,
+    "warn": 1
+  },
+  "summaries": {
+    "ISS-01": "Duplicate keys at salesforce.opportunities (error, severity high). Seen in: unique_stg_salesforce__opportunities_opportunity_id. 3 duplicate ids (2 identical, 1 conflicting). Blocks: campaign_attribution_report, weekly_pipeline_review.",
+    "ISS-02": "Missing fx rate at salesforce.opportunities (error, severity high). Seen in: mapped_in_seed_stg_salesforce__opportunities_currency__False__fx_rates__currency. Unmapped values: AUD. Blocks: campaign_attribution_report, weekly_pipeline_review.",
+    "ISS-03": "Null values at salesforce.opportunities (error, severity high). Seen in: not_null_stg_salesforce__opportunities_owner_id. Blocks: campaign_attribution_report, weekly_pipeline_review.",
+    "ISS-04": "Stale source at hubspot.contacts (error, severity high). Seen in: hubspot.contacts. Blocks: campaign_attribution_report.",
+    "ISS-05": "Unmapped stage at salesforce.opportunity_history (error, severity high). Seen in: mapped_in_seed_stg_salesforce__opportunity_history_stage_raw__stage_map__raw_stage. Unmapped values: legal review. Blocks: weekly_pipeline_review."
+  },
+  "summary_mode": "template"
+}

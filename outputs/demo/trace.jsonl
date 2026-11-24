@@ -1,0 +1,5 @@
+{"span": "inject", "ms": 6, "status": "ok", "mutations": 6}
+{"span": "load_raw", "ms": 100, "status": "ok", "rows": {"raw_hubspot.contacts": 398, "raw_hubspot.companies": 60, "raw_hubspot.campaigns": 12, "raw_hubspot.touches": 766, "raw_salesforce.users": 11, "raw_salesforce.opportunities": 159, "raw_salesforce.opportunity_history": 453, "raw_salesforce.tasks": 494}}
+{"span": "dbt", "ms": 9455, "status": "ok", "freshness_exit": 1, "build_exit": 1, "ok": true}
+{"span": "triage", "ms": 256, "status": "ok", "issues": 5, "quarantined": 4}
+{"span": "summaries", "ms": 0, "status": "ok", "mode": "template"}

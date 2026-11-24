@@ -1,0 +1,13 @@
+id,name,campaign_type,start_date,is_deleted
+cmp_01,FY27 Webinar 1 (synthetic),Webinar,2025-12-25,false
+cmp_02,FY27 Paid Social 2 (synthetic),Paid Social,2026-01-19,false
+cmp_03,FY27 Event 3 (synthetic),Event,2026-02-13,false
+cmp_04,FY27 Content 4 (synthetic),Content,2026-03-10,true
+cmp_05,FY27 Outbound 5 (synthetic),Outbound,2026-04-04,false
+cmp_06,FY27 Partner 6 (synthetic),Partner,2026-04-29,false
+cmp_07,FY27 Webinar 7 (synthetic),Webinar,2026-05-24,false
+cmp_08,FY27 Paid Social 8 (synthetic),Paid Social,2026-06-18,false
+cmp_09,FY27 Event 9 (synthetic),Event,2026-07-13,false
+cmp_10,FY27 Content 10 (synthetic),Content,2026-08-07,false
+cmp_11,FY27 Outbound 11 (synthetic),Outbound,2026-09-01,false
+cmp_12,FY27 Partner 12 (synthetic),Partner,2026-09-26,false

@@ -1,0 +1,3 @@
+change_id,issue_id,type,target,action,record_ids
+CHG-03,ISS-03,crm_fix_task,salesforce.opportunities,"CRM admin task: fix null values on salesforce.opportunities for the listed records, then re-run dbt.",006O0007 006O0057 006O0107
+CHG-04,ISS-04,connector_check,hubspot.contacts,"Check the connector sync for hubspot.contacts (max loaded 40.0h ago). Do not publish downstream exposures until a fresh load lands, then re-run dbt.",

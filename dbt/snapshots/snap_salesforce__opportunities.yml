@@ -1,0 +1,9 @@
+snapshots:
+  - name: snap_salesforce__opportunities
+    relation: source('salesforce', 'opportunities')
+    description: Type-2 history of stage, amount, close date and owner, so pipeline can be re-stated as of any past run.
+    config:
+      schema: snapshots
+      unique_key: id
+      strategy: check
+      check_cols: [stage_name, amount, close_date, owner_id, currency_iso_code]

@@ -1,0 +1,50 @@
+version: 2
+models:
+  - name: stg_salesforce__users
+    columns:
+      - name: owner_id
+        data_tests: [unique, not_null]
+  - name: stg_salesforce__opportunities
+    description: Typed Salesforce opportunities, soft-deleted rows removed. description_untrusted is free text and must be screened.
+    columns:
+      - name: opportunity_id
+        data_tests: [unique, not_null]
+      - name: owner_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments: {to: ref('stg_salesforce__users'), field: owner_id}
+      - name: stage_raw
+        data_tests:
+          - not_null
+          - mapped_in_seed:
+              arguments: {seed: stage_map, seed_column: raw_stage}
+      - name: currency
+        data_tests:
+          - not_null
+          - mapped_in_seed:
+              arguments: {seed: fx_rates, seed_column: currency, normalise: false}
+      - name: created_at
+        data_tests: [not_null, not_in_future]
+      - name: amount_local
+        data_tests:
+          - non_negative
+  - name: stg_salesforce__opportunity_history
+    columns:
+      - name: history_id
+        data_tests: [unique, not_null]
+      - name: opportunity_id
+        data_tests:
+          - relationships:
+              arguments: {to: ref('stg_salesforce__opportunities'), field: opportunity_id}
+              config: {severity: warn}
+      - name: stage_raw
+        data_tests:
+          - mapped_in_seed:
+              arguments: {seed: stage_map, seed_column: raw_stage}
+      - name: stage_entered_at
+        data_tests: [not_null, not_in_future]
+  - name: stg_salesforce__tasks
+    columns:
+      - name: task_id
+        data_tests: [unique, not_null]

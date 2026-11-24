@@ -1,0 +1,19 @@
+{
+  "applied": [
+    "seed:fx_rates",
+    "seed:stage_map"
+  ],
+  "ok": true,
+  "repo_project_unchanged": true,
+  "status_counts": {
+    "fail": 2,
+    "pass": 46,
+    "skipped": 17,
+    "success": 17,
+    "warn": 1
+  },
+  "still_failing_error_nodes": [
+    "test.gtm_revenue.not_null_stg_salesforce__opportunities_owner_id.999bd2c60f",
+    "test.gtm_revenue.unique_stg_salesforce__opportunities_opportunity_id.5667a26827"
+  ]
+}

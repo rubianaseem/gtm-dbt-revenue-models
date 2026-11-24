@@ -1,0 +1,34 @@
+version: 2
+models:
+  - name: int_contacts__deduped
+    columns:
+      - name: contact_key
+        data_tests: [unique, not_null]
+  - name: int_opportunities__enriched
+    columns:
+      - name: opportunity_id
+        data_tests: [unique, not_null]
+      - name: stage
+        data_tests: [not_null]
+  - name: int_opportunity__stage_spells
+    data_tests:
+      - dbt_utils_free_unique_combination:
+          arguments: {columns: [opportunity_id, stage_entered_at]}
+unit_tests:
+  - name: stage_spells_collapse_repeats_and_measure_days
+    description: Label variants of the same stage collapse into one spell; days_in_stage is measured to the next stage.
+    model: int_opportunity__stage_spells
+    given:
+      - input: ref('stg_salesforce__opportunity_history')
+        rows:
+          - {history_id: h1, opportunity_id: o1, stage_raw: Discovery, stage_entered_at: "2026-10-01 00:00:00"}
+          - {history_id: h2, opportunity_id: o1, stage_raw: "discovery", stage_entered_at: "2026-10-02 00:00:00"}
+          - {history_id: h3, opportunity_id: o1, stage_raw: Qualification, stage_entered_at: "2026-10-06 00:00:00"}
+      - input: ref('stage_map')
+        rows:
+          - {raw_stage: discovery, stage: Discovery, stage_order: 1, is_closed: false, is_won: false}
+          - {raw_stage: qualification, stage: Qualified, stage_order: 2, is_closed: false, is_won: false}
+    expect:
+      rows:
+        - {opportunity_id: o1, stage: Discovery, days_in_stage: 5.0, next_stage: Qualified}
+        - {opportunity_id: o1, stage: Qualified, days_in_stage: null, next_stage: null}

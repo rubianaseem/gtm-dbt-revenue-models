@@ -1,0 +1,5 @@
+# Pinned versions tested on Python 3.13 (box) with a fresh venv on 2026-11-24.
+# dbt-core 1.12 is the dbt v1 line; dbt v2 is now the default for new installs, see SETUP.md.
+dbt-core==1.12.7
+dbt-duckdb==1.11.1
+duckdb==2.0.1

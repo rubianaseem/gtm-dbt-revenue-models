@@ -1,0 +1,20 @@
+version: 2
+seeds:
+  - name: stage_map
+    description: Maps every raw stage label (lowercased, trimmed) to one canonical stage. New CRM stages must be added here.
+    config:
+      column_types: {raw_stage: varchar, stage: varchar, stage_order: integer, is_closed: boolean, is_won: boolean}
+    columns:
+      - name: raw_stage
+        data_tests: [unique, not_null]
+  - name: fx_rates
+    description: One plan rate per currency. Rates are synthetic. The agent never proposes a rate value; a human supplies it.
+    config:
+      column_types: {currency: varchar, rate_to_usd: double, rate_note: varchar}
+    columns:
+      - name: currency
+        data_tests: [unique, not_null]
+  - name: quotas
+    description: Quota per owner per fiscal quarter (synthetic).
+    config:
+      column_types: {owner_id: varchar, fiscal_quarter: varchar, quota_usd: double}

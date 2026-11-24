@@ -1,0 +1,12 @@
+id,name,email,user_role,territory,is_active
+005U001,Ben Okafor (synthetic),ben.okafor@seller.example,AE,UK&I,true
+005U002,Chloe Murphy (synthetic),chloe.murphy@seller.example,AE,UK&I,true
+005U003,Dev Novak (synthetic),dev.novak@seller.example,AE,DACH,true
+005U004,Ella Rossi (synthetic),ella.rossi@seller.example,AE,DACH,false
+005U005,Farid Khan (synthetic),farid.khan@seller.example,AE,NA East,true
+005U006,Grace Evans (synthetic),grace.evans@seller.example,AE,NA East,true
+005U007,Hugo Silva (synthetic),hugo.silva@seller.example,AE,NA West,true
+005U008,Isla Brown (synthetic),isla.brown@seller.example,AE,NA West,true
+005U009,Jon Kowalski (synthetic),jon.kowalski@seller.example,AE,France,true
+005U010,Kemi Shah (synthetic),kemi.shah@seller.example,AE,Benelux,true
+005U011,RevOps Queue (synthetic),revops@seller.example,Queue,Global,true
